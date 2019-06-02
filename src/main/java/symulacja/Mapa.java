@@ -219,6 +219,42 @@ public class Mapa
         return iloscZaraz;
     }
 
+    public int ileDoktorw(){
+        int iloscDoktorow = 0;
+        for (int i = 0; i < rozmiar; i++) {
+            for (int j = 0; j < rozmiar; j++) {
+                if (planszaGry[i][j] instanceof Doktor) {
+                    iloscDoktorow++;
+                }
+            }
+        }
+        return iloscDoktorow;
+    }
+
+    public int ileAntyszcz(){
+        int iloscAntyszcz = 0;
+        for (int i = 0; i < rozmiar; i++) {
+            for (int j = 0; j < rozmiar; j++) {
+                if (planszaGry[i][j] instanceof AntySzcz) {
+                    iloscAntyszcz++;
+                }
+            }
+        }
+        return iloscAntyszcz;
+    }
+
+    public int ileItemow(){
+        int iloscItemow = 0;
+        for (int i = 0; i < rozmiar; i++) {
+            for (int j = 0; j < rozmiar; j++) {
+                if (planszaGry[i][j] instanceof AbstractItem) {
+                    iloscItemow++;
+                }
+            }
+        }
+        return iloscItemow;
+    }
+
 }
 
 

@@ -74,6 +74,10 @@ public class Symulacja
         Plansza = new Mapa(rozmiarMapy, LiczbaLudzi, LiczbaZaraz);
     }
 
+    private void stworzPlik(){}
+
+    private void zapiszDoPliku(){}
+
     private void wlaczGre()
     {
         getRozmiar();
@@ -88,7 +92,10 @@ public class Symulacja
             Plansza.move();
             System.out.println("Runda: " + i);
             System.out.println("Liczba ludzi: " + Plansza.ileLudzi());
+            System.out.println("W tym doktorow: " + Plansza.ileDoktorw());
+            System.out.println("W tym antyszczepionkowcow: " + Plansza.ileAntyszcz());
             System.out.println("Liczba zaraz: " + Plansza.ileZaraz());
+            System.out.println("Liczba itemow: " + Plansza.ileItemow());
             System.out.println("-------------------------");
             i++;
         }

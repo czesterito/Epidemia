@@ -19,7 +19,7 @@ public class AntySzcz extends Czlowiek
     public Czlowiek convertAntySzcz(Czlowiek aczlowiek)
     {
         int a = generator.nextInt(100);
-        if(a<10)
+        if(a<30)
         {
             AntySzcz nowy = new AntySzcz();
             nowy.setHp(aczlowiek.getHp());

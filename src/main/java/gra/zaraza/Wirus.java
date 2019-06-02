@@ -9,4 +9,6 @@ public class Wirus extends AbstractZaraza
         setDmg(10);
     }
 
+    public Wirus rozniesWirus(){return new Wirus();}
+
 }

@@ -35,7 +35,7 @@ public class Doktor extends Czlowiek
     public AbstractItem makeItem()
     {
 
-       if(generator.nextInt(100)<20)
+       if(generator.nextInt(100)<30)
        {
            int a;
            a = generator.nextInt(3);
@@ -49,7 +49,7 @@ public class Doktor extends Czlowiek
     public Czlowiek convertDoktor(Czlowiek aczlowiek)
     {
         int a = generator.nextInt(100);
-        if(a<10)
+        if(a<30)
         {
             Doktor nowy = new Doktor();
             nowy.setHp(aczlowiek.getHp());

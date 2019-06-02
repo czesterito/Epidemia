@@ -6,4 +6,6 @@ public class Bakteria extends AbstractZaraza
     {
         setDmg(15);
     }
+
+    public Bakteria rozniesBakteria(){return new Bakteria();}
 }

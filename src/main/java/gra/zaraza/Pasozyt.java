@@ -8,4 +8,6 @@ public class Pasozyt extends AbstractZaraza
         setDmg(20);
     }
 
+    public Pasozyt rozniesPasozyt(){return new Pasozyt();}
+
 }
