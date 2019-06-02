@@ -1,5 +1,6 @@
 package symulacja;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Symulacja
@@ -12,38 +13,63 @@ public class Symulacja
 
     private void getRozmiar()
     {
-        Scanner scan = new Scanner(System.in);
-        do {
-            System.out.println("Podaj rozmiar mapy wiekszy od 0: ");
-            rozmiarMapy = scan.nextInt();
-            if(rozmiarMapy<=0) System.out.println("Zly rozmiar!");
-        }
-        while(rozmiarMapy<=0);
+
+           do {
+               try {
+                   Scanner scan = new Scanner(System.in);
+                   System.out.println("Podaj rozmiar mapy wiekszy od 0: ");
+                   rozmiarMapy = scan.nextInt();
+                   if (rozmiarMapy <= 0) System.out.println("Zly rozmiar!");
+               }
+               catch(InputMismatchException e)
+               {
+                   System.out.println("To nie jest liczba gluptasie!");
+               }
+           }
+           while (rozmiarMapy <= 0);
+
     }
 
     private void getLiczbaLudzi()
     {
-        Scanner scan = new Scanner(System.in);
-        do {
-            System.out.println("Podaj liczbe ludzi mniejsza niz " + (rozmiarMapy*rozmiarMapy) + ": ");
-            LiczbaLudzi = scan.nextInt();
-            if(LiczbaLudzi>(rozmiarMapy*rozmiarMapy)) System.out.println("Zla ilosc ludzi!");
-        }
-        while(LiczbaLudzi>(rozmiarMapy*rozmiarMapy));
+
+            do {
+                try {
+                    Scanner scan = new Scanner(System.in);
+                    System.out.println("Podaj liczbe ludzi mniejsza niz " + (rozmiarMapy * rozmiarMapy) + ": ");
+                    LiczbaLudzi = scan.nextInt();
+                    if (LiczbaLudzi > (rozmiarMapy * rozmiarMapy)) System.out.println("Zla ilosc ludzi!");
+                }
+                catch(InputMismatchException e)
+                {
+                    System.out.println("To nie jest liczba gluptasie!");
+                }
+            }
+            while (LiczbaLudzi > (rozmiarMapy * rozmiarMapy));
+
+
     }
 
     private void getLiczbaZaraz()
     {
-        Scanner scan = new Scanner(System.in);
-        do {
-            System.out.println("Podaj liczbe zaraz mniejsza/rowna " + ((rozmiarMapy*rozmiarMapy)-LiczbaLudzi) + ": ");
-            LiczbaZaraz = scan.nextInt();
-            if(LiczbaZaraz>((rozmiarMapy*rozmiarMapy)-LiczbaLudzi)) System.out.println("Zla ilosc zaraz!");
-        }
-        while(LiczbaZaraz>((rozmiarMapy*rozmiarMapy)-LiczbaLudzi));
+
+            do {
+                try {
+                    Scanner scan = new Scanner(System.in);
+                    System.out.println("Podaj liczbe zaraz mniejsza/rowna " + ((rozmiarMapy * rozmiarMapy) - LiczbaLudzi) + ": ");
+                    LiczbaZaraz = scan.nextInt();
+                    if (LiczbaZaraz > ((rozmiarMapy * rozmiarMapy) - LiczbaLudzi))
+                        System.out.println("Zla ilosc zaraz!");
+                }
+                catch(InputMismatchException e)
+                {
+                    System.out.println("To nie jest liczba gluptasie!");
+                }
+            }
+            while (LiczbaZaraz > ((rozmiarMapy * rozmiarMapy) - LiczbaLudzi));
     }
 
-    private void makePlansza()
+    private void przekazDoPlansza()
     {
         Plansza = new Mapa(rozmiarMapy, LiczbaLudzi, LiczbaZaraz);
     }
@@ -53,8 +79,10 @@ public class Symulacja
         getRozmiar();
         getLiczbaLudzi();
         getLiczbaZaraz();
-        makePlansza();
-        Plansza.ustawNaPlanszy();
+        przekazDoPlansza();
+        Plansza.makePlanszaGry();
+        Plansza.ustawCzlowiek();
+        Plansza.ustawZaraza();
         int i = 1;
         do {
             Plansza.move();

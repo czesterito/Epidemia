@@ -19,8 +19,8 @@ public class Mapa
     private int rozmiar;
     private int ludzie;
     private int zarazki;
-    private int iloscLudzi;
-    private int iloscZaraz;
+    private int X;
+    private int Y;
     private Object[][] planszaGry;
     private Random generator = new Random();
 
@@ -31,19 +31,9 @@ public class Mapa
         this.zarazki = LiczbaZaraz;
     }
 
-    public void makePlansza()
+    public void makePlanszaGry()
     {
         planszaGry = new Object[rozmiar][rozmiar];
-    }
-
-    public int randomX()
-    {
-        return generator.nextInt(rozmiar);
-    }
-
-    public int randomY()
-    {
-        return generator.nextInt(rozmiar);
     }
 
     private AbstractZaraza losowaZaraza()
@@ -58,8 +48,6 @@ public class Mapa
     public void ustawCzlowiek()
     {
         Czlowiek[] czlowiek = new Czlowiek[ludzie];
-        int X;
-        int Y;
         for(int i=0; i<ludzie;i++)
         {
             czlowiek[i] = new Czlowiek();
@@ -70,8 +58,8 @@ public class Mapa
 
         for(int i=0;i<ludzie;i++)
         {
-            X = randomX();
-            Y = randomY();
+            X = generator.nextInt(rozmiar);
+            Y = generator.nextInt(rozmiar);
 
             if(planszaGry[X][Y]==null) planszaGry[X][Y] = czlowiek[i];
             else i--;
@@ -81,8 +69,6 @@ public class Mapa
     public void ustawZaraza()
     {
         AbstractZaraza[] zaraza = new AbstractZaraza[zarazki];
-        int X;
-        int Y;
         for(int i=0; i<zarazki;i++)
         {
             zaraza[i] = losowaZaraza();
@@ -90,25 +76,16 @@ public class Mapa
 
         for(int i=0;i<zarazki;i++)
         {
-            X = randomX();
-            Y = randomY();
+            X = generator.nextInt(rozmiar);
+            Y = generator.nextInt(rozmiar);
 
             if(planszaGry[X][Y]==null) planszaGry[X][Y] = zaraza[i];
             else i--;
         }
     }
 
-    public void ustawNaPlanszy()
-    {
-        makePlansza();
-        ustawCzlowiek();
-        ustawZaraza();
-    }
-
     public void move()
     {
-        int X;
-        int Y;
         for(int i=0;i<rozmiar;i++)
         {
             for(int j=0;j<rozmiar;j++)
@@ -216,7 +193,7 @@ public class Mapa
     }
 
     public int ileLudzi(){
-        iloscLudzi = 0;
+        int iloscLudzi = 0;
         for (int i = 0; i < rozmiar; i++) {
             for (int j = 0; j < rozmiar; j++) {
                 if (planszaGry[i][j] instanceof Czlowiek) {
@@ -228,7 +205,7 @@ public class Mapa
     }
 
     public int ileZaraz(){
-        iloscZaraz = 0;
+        int iloscZaraz = 0;
         for (int i = 0; i < rozmiar; i++) {
             for (int j = 0; j < rozmiar; j++) {
                 if (planszaGry[i][j] instanceof AbstractZaraza) iloscZaraz++;
